@@ -169,7 +169,7 @@ namespace OOServerBovespaB3Provider
                 foreach (B3OptionOnEquityInfo oneOption in options)
                 {
                     _option = new Option();
-                    var quote = _B3PoviderClient.CurrentMarketData.Where(ins => oneOption.Ticker.Equals(ticker, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+                    var quote = _B3PoviderClient.CurrentMarketData.Where(ins => ins.Ticker.Equals(oneOption.Ticker, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
 
                     _option.stock = ticker;
                     _option.symbol = oneOption.Ticker;
@@ -186,6 +186,7 @@ namespace OOServerBovespaB3Provider
                         _option.price.ask = quote.BestAskPrice.HasValue ? quote.BestAskPrice.Value : 0;
                         _option.price.bid = quote.BestBidPrice.HasValue ? quote.BestBidPrice.Value : 0;
                         _option.price.last = quote.LastPrice.HasValue ? quote.LastPrice.Value : 0;
+                        _option.price.change = (quote.LastPrice.HasValue && quote.FirstPrice.HasValue)?  quote.LastPrice.Value - quote.FirstPrice.Value: 0.0;
                         _option.volume.total = quote.NationalFinancialVolume.HasValue ? quote.NationalFinancialVolume.Value : 0.0;
                     }
 

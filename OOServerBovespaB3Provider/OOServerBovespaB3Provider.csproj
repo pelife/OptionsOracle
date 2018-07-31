@@ -70,5 +70,27 @@
       <Name>OOServerLib</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="B3Provider\B3Provider.dll" />
+    <Content Include="B3Provider\B3Provider.pdb" />
+    <Content Include="B3Provider\FlatFile.Core.Attributes.dll" />
+    <Content Include="B3Provider\FlatFile.Core.Attributes.pdb" />
+    <Content Include="B3Provider\FlatFile.Core.Attributes.xml" />
+    <Content Include="B3Provider\FlatFile.Core.dll" />
+    <Content Include="B3Provider\FlatFile.Core.pdb" />
+    <Content Include="B3Provider\FlatFile.Core.xml" />
+    <Content Include="B3Provider\FlatFile.Delimited.Attributes.dll" />
+    <Content Include="B3Provider\FlatFile.Delimited.Attributes.pdb" />
+    <Content Include="B3Provider\FlatFile.Delimited.Attributes.xml" />
+    <Content Include="B3Provider\FlatFile.Delimited.dll" />
+    <Content Include="B3Provider\FlatFile.Delimited.pdb" />
+    <Content Include="B3Provider\FlatFile.Delimited.xml" />
+    <Content Include="B3Provider\FlatFile.FixedLength.Attributes.dll" />
+    <Content Include="B3Provider\FlatFile.FixedLength.Attributes.pdb" />
+    <Content Include="B3Provider\FlatFile.FixedLength.Attributes.xml" />
+    <Content Include="B3Provider\FlatFile.FixedLength.dll" />
+    <Content Include="B3Provider\FlatFile.FixedLength.pdb" />
+    <Content Include="B3Provider\FlatFile.FixedLength.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
