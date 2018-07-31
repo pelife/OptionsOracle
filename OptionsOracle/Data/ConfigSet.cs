@@ -14,10 +14,10 @@ using OptionsOracle.Calc.Options;
 using OptionsOracle.Calc.Analysis;
 using OOServerLib.Global;
 
-namespace OptionsOracle.Data 
+namespace OptionsOracle.Data
 {
     partial class ConfigSet
-    {    
+    {
         private const string CONFIG_FILE = @"config.xml";
         private const string REMOTE_CONFIG = @"http://www.samoasky.com/optionsoracle_config.xml";
 
@@ -82,7 +82,7 @@ namespace OptionsOracle.Data
 
         public string CurrentVersion
         {
-            get {  return Assembly.GetExecutingAssembly().GetName().Version.ToString(); }
+            get { return Assembly.GetExecutingAssembly().GetName().Version.ToString(); }
         }
 
         public int LastCommand
@@ -102,7 +102,7 @@ namespace OptionsOracle.Data
             get { return debit_interest; }
             set { debit_interest = value; }
         }
-        
+
         public double CreditIterest
         {
             get { return credit_interest; }
@@ -130,11 +130,11 @@ namespace OptionsOracle.Data
         public string[] OptionsIndicatorName = new string[Global.MAX_OPTIONS_INDICATORS] { "", "" };
         public string[] OptionsIndicatorFormat = new string[Global.MAX_OPTIONS_INDICATORS] { "N2", "N2" };
         public string[] OptionsIndicatorEquation = new string[Global.MAX_OPTIONS_INDICATORS] { "", "" };
-        public bool[]   OptionsIndicatorEnable = new bool[Global.MAX_OPTIONS_INDICATORS] { false, false };
+        public bool[] OptionsIndicatorEnable = new bool[Global.MAX_OPTIONS_INDICATORS] { false, false };
 
         public ArrayList PortfolioList
         {
-            get 
+            get
             {
                 ArrayList portfolio_list = new ArrayList();
                 string[] list = GetParameter("Portfolio List").Trim().Split(new char[] { ',' });
@@ -220,7 +220,7 @@ namespace OptionsOracle.Data
                         row["Type"] = s;
                         row["PerTransaction"] = 0;
                         row["PerUnit"] = 0;
-                        CommissionsTable.Rows.Add(row);                        
+                        CommissionsTable.Rows.Add(row);
                     }
                 }
 
@@ -232,7 +232,7 @@ namespace OptionsOracle.Data
                         row = InterestTable.NewRow();
                         row["Type"] = s;
                         row["Interest"] = 0;
-                        InterestTable.Rows.Add(row);                        
+                        InterestTable.Rows.Add(row);
                     }
                 }
 
@@ -334,7 +334,7 @@ namespace OptionsOracle.Data
                     row["Value"] = Global.DEFAULT_FEDERAL_INTEREST_AUTO_UPDATE;
                     ParametersTable.Rows.Add(row);
                 }
-                
+
                 if (ParametersTable.FindByParameter("Volatility Mode") == null)
                 {
                     changed = true;
@@ -432,7 +432,7 @@ namespace OptionsOracle.Data
 
                 // create table view configuration
                 TableConfig.CreateDefaultTableView(false);
-                
+
                 // delete old column width configuration
                 if (ParametersTable.FindByParameter("Main Table Columns Width") != null ||
                     ParametersTable.FindByParameter("Portfolio Table Columns Width") != null)
@@ -447,7 +447,7 @@ namespace OptionsOracle.Data
 
                 if (ParametersTable.FindByParameter("Portfolio OPO List") != null)
                 {
-                    changed = RenameParameter("Portfolio OPO List", "Portfolio (My Portfolio)");    
+                    changed = RenameParameter("Portfolio OPO List", "Portfolio (My Portfolio)");
                 }
 
                 if (ParametersTable.FindByParameter("Table Columns Width") != null)
@@ -712,7 +712,7 @@ namespace OptionsOracle.Data
                 ProxyAddress = GetParameter("Proxy Address");
             }
             catch { ProxyAddress = ""; }
-            
+
             try
             {
                 // update current server proxy settings
@@ -916,7 +916,7 @@ namespace OptionsOracle.Data
         public string GetRemoteConfigurationUrl(bool enable_customization)
         {
             string value = GetParameter("Remote Configuration");
-            
+
             if (value == "")
             {
                 value = REMOTE_CONFIG;
@@ -941,7 +941,7 @@ namespace OptionsOracle.Data
         {
             DataRow row = CommissionsTable.FindByType(type);
 
-            if (row != null) 
+            if (row != null)
             {
                 try
                 {

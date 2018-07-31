@@ -166,7 +166,7 @@ namespace OptionsOracle.Data
         public void UpdateDerivedData(Quote quote, bool calc_imp_vol, bool calc_itm_prob, bool calc_stddev, bool calc_indicators)
         {
             // get quote
-            if (quote == null) 
+            if (quote == null)
                 quote = StockQuote;
 
             // begin data load
@@ -755,7 +755,7 @@ namespace OptionsOracle.Data
                 // recalculate derived data   
                 ClearCache();
                 UpdateDerivedData(null, true, true, true, true);
-                UpdateCache(); 
+                UpdateCache();
             }
         }
 
@@ -774,7 +774,7 @@ namespace OptionsOracle.Data
                 // recalculate derived data    
                 ClearCache();
                 UpdateDerivedData(null, false, false, false, true);
-                UpdateCache(); 
+                UpdateCache();
             }
         }
 
@@ -789,11 +789,11 @@ namespace OptionsOracle.Data
                 // update implied volatility
                 row.ImpliedVolatility = value;
                 row.AcceptChanges();
-                
+
                 // recalculate derived data 
                 ClearCache();
                 UpdateDerivedData(null, false, true, true, true);
-                UpdateCache(); 
+                UpdateCache();
             }
         }
 
@@ -812,7 +812,7 @@ namespace OptionsOracle.Data
                 // recalculate derived data   
                 ClearCache();
                 UpdateDerivedData(null, true, true, true, true);
-                UpdateCache(); 
+                UpdateCache();
             }
         }
 
@@ -826,12 +826,12 @@ namespace OptionsOracle.Data
         {
             option_cache.Clear();
 
-            foreach(OptionsTableRow row in OptionsTable)
+            foreach (OptionsTableRow row in OptionsTable)
                 GetOptionFromOptionTableRow(row);
 
             quote_cache.Clear();
 
-            foreach(QuotesTableRow row in QuotesTable)
+            foreach (QuotesTableRow row in QuotesTable)
                 GetQuoteFromQuoteTableRow(row);
         }
 
@@ -984,7 +984,7 @@ namespace OptionsOracle.Data
         }
 
         private void UpdateOptionsTable(string stock, Quote quote)
-        { 
+        {
             // get stock's option list
             ArrayList list = Comm.Server.GetOptionsChain(stock);
             if (list == null || list.Count == 0) return;
@@ -1297,12 +1297,12 @@ namespace OptionsOracle.Data
 
         public Quote GetQuoteFromQuoteTableRow(QuotesTableRow row)
         {
-            if (row.IsStockNull()) 
+            if (row.IsStockNull())
                 return null;
 
             string stock = row.Stock;
 
-            if (string.IsNullOrEmpty(stock)) 
+            if (string.IsNullOrEmpty(stock))
                 return null;
 
             // if symbol is already in cache, return it from cache

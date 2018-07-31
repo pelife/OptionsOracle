@@ -11,14 +11,14 @@ using System.Reflection;
 using System.Windows.Forms;
 using OptionsOracle.Calc.Volatility;
 
-namespace OptionsOracle.Data 
+namespace OptionsOracle.Data
 {
     partial class VolatilitySet
     {
         partial class VolatilityTableDataTable
         {
         }
-    
+
         private const int VOLATILITY_CONE_PERIOD = 252;
         private const int VOLATILITY_ACCUMULATIONS = 252;
 
@@ -33,7 +33,7 @@ namespace OptionsOracle.Data
         {
             VolatilityTable.Clear();
 
-            for (int i = 2; i <= VOLATILITY_CONE_PERIOD; )
+            for (int i = 2; i <= VOLATILITY_CONE_PERIOD;)
             {
                 double mean, high, low, stddev;
 

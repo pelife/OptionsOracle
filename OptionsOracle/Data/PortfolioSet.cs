@@ -11,7 +11,7 @@ using System.Reflection;
 using System.ComponentModel;
 using OptionsOracle.Calc.Account;
 
-namespace OptionsOracle.Data 
+namespace OptionsOracle.Data
 {
     public partial class PortfolioSet
     {
@@ -54,7 +54,7 @@ namespace OptionsOracle.Data
         {
             ArrayList list = new ArrayList();
 
-            foreach (DataRow row in PortfolioTable) 
+            foreach (DataRow row in PortfolioTable)
                 if (row["PortfolioMembership"] != DBNull.Value && row["PortfolioMembership"].ToString().Contains(portfolio + ",")) list.Add((string)row["OpoFile"]);
 
             foreach (string item in list)
@@ -186,7 +186,7 @@ namespace OptionsOracle.Data
                                 if (double.IsNaN(protection_prob)) protection_prob = (double)rwr["Prob"];
                                 else protection_prob += (double)rwr["Prob"];
                             }
-                            if (rwr["Price"] != DBNull.Value) row["BreakevenPrice"] = rwr["Price"]; 
+                            if (rwr["Price"] != DBNull.Value) row["BreakevenPrice"] = rwr["Price"];
                             break;
                         case "Upper Protection":
                             row["UpperBreakeven"] = rwr["Change"];
@@ -195,7 +195,7 @@ namespace OptionsOracle.Data
                                 if (double.IsNaN(protection_prob)) protection_prob = (double)rwr["Prob"];
                                 else protection_prob += (double)rwr["Prob"];
                             }
-                            if (rwr["Price"] != DBNull.Value) row["BreakevenPrice"] = rwr["Price"]; 
+                            if (rwr["Price"] != DBNull.Value) row["BreakevenPrice"] = rwr["Price"];
                             break;
                         case "Lower Breakeven":
                             row["LowerBreakeven"] = rwr["Change"];
@@ -204,7 +204,7 @@ namespace OptionsOracle.Data
                                 if (double.IsNaN(breakeven_prob)) breakeven_prob = (double)rwr["Prob"];
                                 else breakeven_prob += (double)rwr["Prob"];
                             }
-                            if (rwr["Price"] != DBNull.Value) row["BreakevenPrice"] = rwr["Price"]; 
+                            if (rwr["Price"] != DBNull.Value) row["BreakevenPrice"] = rwr["Price"];
                             break;
                         case "Upper Breakeven":
                             row["UpperBreakeven"] = rwr["Change"];
@@ -266,7 +266,7 @@ namespace OptionsOracle.Data
 
         public void UpdateSummary(string portfolio)
         {
-            string[] list = new string[] 
+            string[] list = new string[]
             {
                 "Portfolio Investment",
                 "Portfolio Return If Unchange",

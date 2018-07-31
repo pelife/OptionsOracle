@@ -1,4 +1,5 @@
-﻿namespace OptionsOracle.Data {
+﻿namespace OptionsOracle.Data
+{
 
 
     partial class AnalysisSet

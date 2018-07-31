@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.22823.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OptionsOracle", "OptionsOracle\OptionsOracle.csproj", "{45718E33-8CF3-4174-9247-11846F13B799}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -37,6 +37,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOServerDataCenter", "OOServerDataCenter\OOServerDataCenter.csproj", "{A952B829-E9CF-49FD-A265-197D867DD70D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOServerNSE", "OOServerNSE\OOServerNSE.csproj", "{1945AD8D-09B1-458C-BA4D-3A3856C6BC69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOServerBovespaB3Provider", "OOServerBovespaB3Provider\OOServerBovespaB3Provider.csproj", "{4B719EC7-C12A-4252-AC15-3D306E88A61E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -335,8 +337,31 @@ Global
 		{1945AD8D-09B1-458C-BA4D-3A3856C6BC69}.Release|x64.Build.0 = Release|Any CPU
 		{1945AD8D-09B1-458C-BA4D-3A3856C6BC69}.Release|x86.ActiveCfg = Release|x86
 		{1945AD8D-09B1-458C-BA4D-3A3856C6BC69}.Release|x86.Build.0 = Release|x86
+		{4B719EC7-C12A-4252-AC15-3D306E88A61E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B719EC7-C12A-4252-AC15-3D306E88A61E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B719EC7-C12A-4252-AC15-3D306E88A61E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4B719EC7-C12A-4252-AC15-3D306E88A61E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4B719EC7-C12A-4252-AC15-3D306E88A61E}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{4B719EC7-C12A-4252-AC15-3D306E88A61E}.Debug|Win32.Build.0 = Debug|Any CPU
+		{4B719EC7-C12A-4252-AC15-3D306E88A61E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4B719EC7-C12A-4252-AC15-3D306E88A61E}.Debug|x64.Build.0 = Debug|Any CPU
+		{4B719EC7-C12A-4252-AC15-3D306E88A61E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4B719EC7-C12A-4252-AC15-3D306E88A61E}.Debug|x86.Build.0 = Debug|Any CPU
+		{4B719EC7-C12A-4252-AC15-3D306E88A61E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B719EC7-C12A-4252-AC15-3D306E88A61E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B719EC7-C12A-4252-AC15-3D306E88A61E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{4B719EC7-C12A-4252-AC15-3D306E88A61E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{4B719EC7-C12A-4252-AC15-3D306E88A61E}.Release|Win32.ActiveCfg = Release|Any CPU
+		{4B719EC7-C12A-4252-AC15-3D306E88A61E}.Release|Win32.Build.0 = Release|Any CPU
+		{4B719EC7-C12A-4252-AC15-3D306E88A61E}.Release|x64.ActiveCfg = Release|Any CPU
+		{4B719EC7-C12A-4252-AC15-3D306E88A61E}.Release|x64.Build.0 = Release|Any CPU
+		{4B719EC7-C12A-4252-AC15-3D306E88A61E}.Release|x86.ActiveCfg = Release|Any CPU
+		{4B719EC7-C12A-4252-AC15-3D306E88A61E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8860B94C-3714-4221-8FA2-BBA5E7869AD3}
 	EndGlobalSection
 EndGlobal

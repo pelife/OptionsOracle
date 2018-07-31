@@ -14,7 +14,7 @@ namespace OptionsOracle.Data
         partial class ResultsTableDataTable
         {
         }
-        
+
         private const string WIZARD_FILE = @"wizard.xml";
 
         private Core core;
@@ -96,9 +96,9 @@ namespace OptionsOracle.Data
         private void UpdateGlobalConfigTable(bool update_version)
         {
             DataRow row = GlobalRow;
-            
+
             row["Version"] = update_version ? Config.Local.CurrentVersion : "0.0.0.0";
-            
+
             GlobalTable.AcceptChanges();
         }
 
@@ -112,7 +112,7 @@ namespace OptionsOracle.Data
             else row["Indicator" + index.ToString() + "Equation"] = DBNull.Value;
             if (format != null) row["Indicator" + index.ToString() + "Format"] = format;
             else row["Indicator" + index.ToString() + "Format"] = DBNull.Value;
-            
+
             GlobalTable.AcceptChanges();
         }
 
