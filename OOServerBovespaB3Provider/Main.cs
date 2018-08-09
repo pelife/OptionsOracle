@@ -42,6 +42,7 @@ namespace OOServerBovespaB3Provider
     using System.Xml;
     using System.Linq;
     using System.Collections.Generic;
+    using B3Provider.Records;
 
     public class Main : WebSite, IServer
     {
@@ -54,7 +55,10 @@ namespace OOServerBovespaB3Provider
             _quoteDictionary = new Dictionary<string, Quote>();
             FeatureList.Add(FeaturesT.SUPPORTS_REALTIME_OPTIONS_CHAIN);
             FeatureList.Add(FeaturesT.SUPPORTS_REALTIME_STOCK_QUOTE);
-            //FeatureList.Add(FeaturesT.SUPPORTS_CONFIG_FORM);
+            FeatureList.Add(FeaturesT.SUPPORTS_STOCK_HISTORICAL_DATA);
+            FeatureList.Add(FeaturesT.SUPPORTS_OPTIONS_HISTORICAL_DATA);
+            FeatureList.Add(FeaturesT.SUPPORTS_HISTORICAL_VOLATILITY);
+            FeatureList.Add(FeaturesT.SUPPORTS_INTEREST_RATE);
 
             // update server list
             ServerList.Add(Name);
@@ -135,12 +139,47 @@ namespace OOServerBovespaB3Provider
 
         public ArrayList GetHistoricalData(string ticker, DateTime start, DateTime end)
         {
-            throw new NotImplementedException();
+            // history list
+            ArrayList _historyQuotes = new ArrayList();
+
+            if (_B3PoviderClient.HistoricMarketData == null)
+                _B3PoviderClient.LoadHistoricQuotes(2018); // vamos pegar os dados de 2017 tambem ?
+
+            var quotes = _B3PoviderClient.HistoricMarketData.Where(hq => hq.Ticker.Equals(ticker, StringComparison.InvariantCultureIgnoreCase)).OrderByDescending(hq => hq.TradeDate).ToList(); // capar pela data.
+
+            if (quotes != null && quotes.Count > 0)
+            {
+                foreach (B3HistoricMarketDataInfo oneQuote in quotes)
+                {
+
+                    // Date, Time, Open, High, Low, Close, Q tt, volume, Business, Status
+                    History history = new History();
+
+                    history.stock = ticker;
+
+                    history.date = oneQuote.TradeDate;
+                    history.price.open = oneQuote.Opening;
+                    history.price.high = oneQuote.Maximum;
+                    history.price.low = oneQuote.Minimum;
+                    history.price.close = oneQuote.Last;
+                    history.price.close_adj = oneQuote.Last;
+                    history.volume.total = oneQuote.FinancialVolume;
+
+                    _historyQuotes.Add(history);
+
+                }
+            }
+
+            return _historyQuotes;
         }
 
         public double GetHistoricalVolatility(string ticker, double duration)
         {
-            throw new NotImplementedException();
+            // get historical data
+            ArrayList list = GetHistoricalData(ticker, DateTime.Now.AddDays(-duration * 365), DateTime.Now);
+
+            // calculate historical value
+            return 100.0 * HistoryVolatility.HighLowParkinson(list);
         }
 
         public ArrayList GetOptionsChain(string ticker)
@@ -158,10 +197,10 @@ namespace OOServerBovespaB3Provider
             if (equityInstrument == null)
                 throw new ArgumentException("ticker");
 
-            var options = _B3PoviderClient.OptionInstruments.Where(ins => 
-                ins.B3IDUnderlying.HasValue && 
+            var options = _B3PoviderClient.OptionInstruments.Where(ins =>
+                ins.B3IDUnderlying.HasValue &&
                 ins.B3IDUnderlying.Value == equityInstrument.B3ID.Value &&
-                ins.Expiration.HasValue && 
+                ins.Expiration.HasValue &&
                 ins.Expiration > DateTime.Today).ToList(); // valid options only
 
             if (options != null && options.Count > 0)
@@ -186,7 +225,7 @@ namespace OOServerBovespaB3Provider
                         _option.price.ask = quote.BestAskPrice.HasValue ? quote.BestAskPrice.Value : 0;
                         _option.price.bid = quote.BestBidPrice.HasValue ? quote.BestBidPrice.Value : 0;
                         _option.price.last = quote.LastPrice.HasValue ? quote.LastPrice.Value : 0;
-                        _option.price.change = (quote.LastPrice.HasValue && quote.FirstPrice.HasValue)?  quote.LastPrice.Value - quote.FirstPrice.Value: 0.0;
+                        _option.price.change = (quote.LastPrice.HasValue && quote.FirstPrice.HasValue) ? quote.LastPrice.Value - quote.FirstPrice.Value : 0.0;
                         _option.volume.total = quote.NationalFinancialVolume.HasValue ? quote.NationalFinancialVolume.Value : 0.0;
                     }
 
