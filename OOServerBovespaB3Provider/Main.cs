@@ -142,10 +142,13 @@ namespace OOServerBovespaB3Provider
             // history list
             ArrayList _historyQuotes = new ArrayList();
 
-            if (_B3PoviderClient.HistoricMarketData == null)
+            if (_B3PoviderClient.HistoricMarketData == null || _B3PoviderClient.HistoricMarketData.Count == 0)
+            {
                 _B3PoviderClient.LoadHistoricQuotes(2018); // vamos pegar os dados de 2017 tambem ?
+                _B3PoviderClient.LoadHistoricQuotes(2017);
+            }
 
-            var quotes = _B3PoviderClient.HistoricMarketData.Where(hq => hq.Ticker.Equals(ticker, StringComparison.InvariantCultureIgnoreCase)).OrderByDescending(hq => hq.TradeDate).ToList(); // capar pela data.
+            var quotes = _B3PoviderClient.GetHistoricMarketData().Where(hq => hq.Ticker.Equals(ticker, StringComparison.InvariantCultureIgnoreCase) && hq.TradeDate >= start && hq.TradeDate <= end).OrderByDescending(hq => hq.TradeDate).ToList(); // capar pela data.
 
             if (quotes != null && quotes.Count > 0)
             {
